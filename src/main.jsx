@@ -1,10 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import CarritoApp from './CarritoApp'
+import { NavBarComponent } from './components/NavBarComponent'
+import { BrowserRouter } from 'react-router-dom'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    
-  </StrictMode>,
+  <BrowserRouter>
+    <StrictMode>
+      
+      <CarritoApp />
+      
+    </StrictMode>
+  </BrowserRouter>
+  
 )
