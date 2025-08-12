@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../styles/CardComponent.css";
 
 
 export const CardComponent = ({image, title, description, price}) => {
@@ -14,7 +15,7 @@ export const CardComponent = ({image, title, description, price}) => {
         <div className="card-content">
             <h3 className="card-title">{title}</h3>
             <p className="card-description">{description}</p>
-            <p className="card-price">{price}</p>
+            <p className="card-price">{price} USD</p>
 
             { 
                 added ? <button 
@@ -24,7 +25,7 @@ export const CardComponent = ({image, title, description, price}) => {
                             Quitar del carrito
                         </button>
                 : <button 
-                    className="add-prodcit"
+                    className="add-product"
                     type="button">
                     Agregar al carrito
 
