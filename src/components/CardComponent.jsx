@@ -5,6 +5,13 @@ import "../styles/CardComponent.css";
 export const CardComponent = ({image, title, description, price}) => {
   
     const [added, setAdded]=useState(false)
+
+    const addedProduct = () => {
+        setAdded(!added)
+       
+    }
+
+
     return (
 
 
@@ -21,12 +28,14 @@ export const CardComponent = ({image, title, description, price}) => {
                 added ? <button 
                             className="remove-product"
                             type="button"
+                            onClick={addedProduct}
                             >
                             Quitar del carrito
                         </button>
                 : <button 
                     className="add-product"
-                    type="button">
+                    type="button"
+                    onClick={addedProduct}>
                     Agregar al carrito
 
                 </button>

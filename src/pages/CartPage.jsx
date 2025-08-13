@@ -3,7 +3,7 @@ import React from "react";
 export const CartPage = () => {
   return (
     <>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Producto</th>
@@ -22,8 +22,8 @@ export const CartPage = () => {
         </tbody>
       </table>
 
-      <div class="d-grid gap-2">
-        <button class="btn btn-primary" type="button">
+      <div className="d-grid gap-2">
+        <button className="btn btn-primary" type="button">
           Comprar
         </button>
        
