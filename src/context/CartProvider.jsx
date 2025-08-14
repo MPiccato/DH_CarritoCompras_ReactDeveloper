@@ -3,12 +3,26 @@ import { CartContext } from "./CartContext";
 
 export const CartProvider = ({ children }) => {
   const initialState = [];
-  const [shoppingList, dispatch] = useReducer(
-    shoppingListReducer,
-    initialState
-  );
+
+  const cartReducer = (state, action = {}) => {
+    switch (action.type) {
+      case "ADD_PRODUCT":
+        return [...state, action.payload];
+      case "REMOVE_PRODUCT":
+        return state.filter((product) => product.id !== action.pauload);
+      case "INCREMENT_PRODUCT": // TODO
+        break;
+      case "DECREMENT_PRODUCT": // TODO
+        break;
+      default:
+        return state;
+    }
+  };
+
+  const [shoppingList, dispatch] = useReducer(cartReducer, initialState);
 
   const addProductToCart = (product) => {
+    product.quantity = 1; // Default quantity for new products
     const action = {
       type: "ADD_PRODUCT",
       payload: product,
@@ -38,21 +52,17 @@ export const CartProvider = ({ children }) => {
     dispatch(action);
   };
 
-  const cartReducer = (state, action = {}) => {
-    switch (action.type) {
-      case "ADD_PRODUCT":
-        return [...state, action.payload];
-      case "REMOVE_PRODUCT":
-        return state.filter((product) => product.id !== action.pauload);
-      case "INCREMENT_PRODUCT": // TODO
-        break;
-      case "DECREMENT_PRODUCT": // TODO
-        break;
-      default:
-        return state;
-    }
-  };
   return (
-    <CartContext.Provider value={{ products }}>{children}</CartContext.Provider>
+    <CartContext.Provider
+      value={{
+        shoppingList,
+        addProductToCart,
+        removeProductFromCart,
+        incrementProduct,
+        decrementProduct,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   );
 };

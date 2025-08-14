@@ -1,6 +1,14 @@
 import React from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 export const CartPage = () => {
+  const {
+    shoppingList,
+    removeProductFromCart,
+    incrementProduct,
+    decrementProduct,
+  } = useContext(CartContext);
   return (
     <>
       <table className="table">
@@ -13,12 +21,21 @@ export const CartPage = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+          {shoppingList.map((product) => (
+            <tr key={product.id}>
+              <th scope="row">{product.title}</th>
+              <td>{product.price}</td>
+              <td>{product.quantity}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => removeProductFromCart(product.id)}
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -26,7 +43,6 @@ export const CartPage = () => {
         <button className="btn btn-primary" type="button">
           Comprar
         </button>
-       
       </div>
     </>
   );
