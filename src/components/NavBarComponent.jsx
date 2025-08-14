@@ -3,6 +3,7 @@ import { ShoppingCart } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import "../styles/NavBarComponent.css";
 
 export const NavBarComponent = () => {
   const { shoppingList } = useContext(CartContext);
@@ -26,13 +27,15 @@ export const NavBarComponent = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link active" aria-current="page">
-                Productos
-              </NavLink>
+              <div className="navbar-nav">
+                <NavLink to="/" className="nav-link active" aria-current="page">
+                  Productos
+                </NavLink>
+              </div>
             </li>
           </ul>
         </div>
-        <NavLink to="/carrito">
+        <NavLink className="cart-icon" to="/carrito">
           <Badge badgeContent={shoppingList.length} color="primary">
             <ShoppingCart />
           </Badge>

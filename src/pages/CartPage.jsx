@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-
+import Swal from "sweetalert2";
 export const CartPage = () => {
   const {
     shoppingList,
@@ -16,6 +16,16 @@ export const CartPage = () => {
       .toFixed(2);
   };
 
+  const handlerPurchase = () => {
+    const productsPurchased = shoppingList
+      .map((product) => `${product.title} x ${product.quantity}`)
+      .join("\n");
+    Swal.fire({
+      icon: "success",
+      title: "La compra se ha realizado con éxito",
+      html: `<p> Has comprado: </p> <pre>${productsPurchased}</pre>`,
+    });
+  };
   return (
     <>
       <table className="table">
@@ -71,7 +81,11 @@ export const CartPage = () => {
       </table>
 
       <div className="d-grid gap-2">
-        <button className="btn btn-primary" type="button">
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handlerPurchase}
+        >
           Comprar
         </button>
       </div>
