@@ -14,11 +14,11 @@ export const CardComponent = ({
   const { shoppingList } = useContext(CartContext);
   const [added, setAdded] = useState(false);
 
-  const addedProduct = () => {
+  const addedProductToCart = () => {
     handlerAdd();
     setAdded(true);
   };
-  const removeProduct = () => {
+  const removeProductFromCart = () => {
     handlerRemove();
     setAdded(false);
   };
@@ -45,12 +45,16 @@ export const CardComponent = ({
           <button
             className="remove-product"
             type="button"
-            onClick={removeProduct}
+            onClick={removeProductFromCart}
           >
             Quitar del carrito
           </button>
         ) : (
-          <button className="add-product" type="button" onClick={addedProduct}>
+          <button
+            className="add-product"
+            type="button"
+            onClick={addedProductToCart}
+          >
             Agregar al carrito
           </button>
         )}

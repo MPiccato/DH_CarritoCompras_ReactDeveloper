@@ -4,12 +4,12 @@ import { CartContext } from "./CartContext";
 export const CartProvider = ({ children }) => {
   const initialState = [];
 
-  const cartReducer = (state, action = {}) => {
+  const cartReducer = (state = initialState, action = {}) => {
     switch (action.type) {
       case "ADD_PRODUCT":
         return [...state, action.payload];
       case "REMOVE_PRODUCT":
-        return state.filter((product) => product.id !== action.pauload);
+        return state.filter((product) => product.id !== action.payload);
       case "INCREMENT_PRODUCT": // TODO
         break;
       case "DECREMENT_PRODUCT": // TODO
