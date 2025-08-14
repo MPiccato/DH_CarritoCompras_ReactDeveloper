@@ -10,9 +10,23 @@ export const CartProvider = ({ children }) => {
         return [...state, action.payload];
       case "REMOVE_PRODUCT":
         return state.filter((product) => product.id !== action.payload);
-      case "INCREMENT_PRODUCT": // TODO
-        break;
-      case "DECREMENT_PRODUCT": // TODO
+      case "INCREMENT_PRODUCT":
+        return state.map((product) => {
+          const cantidad = product.quantity + 1;
+          if (product.id === action.payload) {
+            return { ...product, quantity: cantidad };
+          }
+          return product;
+        });
+
+      case "DECREMENT_PRODUCT":
+        return state.map((product) => {
+          if (product.id === action.payload) {
+            const cantidad = product.quantity - 1;
+            return { ...product, quantity: cantidad < 1 ? 1 : cantidad };
+          }
+          return product;
+        });
         break;
       default:
         return state;

@@ -25,7 +25,22 @@ export const CartPage = () => {
             <tr key={product.id}>
               <th scope="row">{product.title}</th>
               <td>{product.price}</td>
-              <td>{product.quantity}</td>
+              <td>
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={() => decrementProduct(product.id)}
+                >
+                  -
+                </button>
+                <button className="btn btn-primary">{product.quantity}</button>
+
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={() => incrementProduct(product.id)}
+                >
+                  +
+                </button>
+              </td>
               <td>
                 <button
                   className="btn btn-danger"
