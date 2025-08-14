@@ -9,6 +9,13 @@ export const CartPage = () => {
     incrementProduct,
     decrementProduct,
   } = useContext(CartContext);
+
+  const calculateTotal = () => {
+    return shoppingList
+      .reduce((total, product) => total + product.price * product.quantity, 0)
+      .toFixed(2);
+  };
+
   return (
     <>
       <table className="table">
@@ -51,6 +58,15 @@ export const CartPage = () => {
               </td>
             </tr>
           ))}
+          <tr>
+            <th>
+              <b>Total:</b>
+            </th>
+
+            <td></td>
+            <td></td>
+            <td>${calculateTotal()}</td>
+          </tr>
         </tbody>
       </table>
 
